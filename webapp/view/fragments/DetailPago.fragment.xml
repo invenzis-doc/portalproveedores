@@ -1,0 +1,153 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+    xmlns:ux="sap.uxap"
+>
+    <ux:ObjectPageLayout id="ObjectPageLayoutPago" showTitleInHeaderContent="true">
+		<ux:headerTitle>
+			<ux:ObjectPageHeader id="headerPago"
+							  objectTitle="Datos de Cabecera"
+							  showTitleSelector="false"
+							  showMarkers="false"
+							  markFavorite="true"
+							  markFlagged="true"
+							  markChanges="false"
+							  objectSubtitle="{/PedidoSeleccionado/Augbl}"							  
+							  isObjectTitleAlwaysVisible="false"
+							  isObjectSubtitleAlwaysVisible="false"
+							  showPlaceholder="false">	
+							  	<ux:breadcrumbs>					
+				</ux:breadcrumbs>		
+			</ux:ObjectPageHeader>
+		</ux:headerTitle>
+		<ux:headerContent>
+					
+		</ux:headerContent>
+		<ux:sections>
+			<ux:ObjectPageSection id="pageSectionPosicionesPago" title="Posiciones">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionPosicionesPago">
+						<ux:blocks>
+						<l:VerticalLayout id="verticalLayoutTablaBotones">
+							<Table
+                            id="tablePosicionesPago"
+                            inset="false"
+                            items="{path: '/ListaPagos'}"
+							noDataText="Sin posiciones"
+					    >
+						<columns>
+							<Column id="columnPosPago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textPosPago" text="Pos"/>
+							</Column>
+							<Column id="idcolumnFechaPago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="idtextFechaPago" text="Fecha de pago"/>									
+							</Column>
+							<Column id="columnMedioPago"  width="12rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMedioPago" text="Medio de pago"/>
+							</Column>
+							<Column id="idcolumnSociedadPago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="idtextSociedadPago" text="Sociedad"/>
+								<footer>
+								<Text id="textTotalPago" text="Total" class="sapUiTinyMarginTop" />													
+  								</footer>			
+							</Column>
+							<Column id="columnMonedaPago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMonedaPago" text="Moneda"/>
+								<footer>
+								<Text id="textMonedaFooterPago" text="ARS" class="sapUiTinyMarginTop" />													
+  								</footer>
+							</Column>
+							<Column id="columnImportePago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textImportePago" text="Importe"/>
+								<footer>
+								<Text id="texImporteFooterPago" text="ARS" class="sapUiTinyMarginTop" />													
+  								</footer>
+							</Column>							
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnItemPosPago" vAlign="Middle">
+								<cells>
+								
+                                    <Text id="rowPosPago" text="{Augbl}" />
+                                    <Text id="rowFechaPago"  text="{path:'Augdt' , formatter:'.formatter.stringDate'}" />
+                                    <Text id="rowMedioPago" text="{Txt50}" />
+                                    <Text id="rowSociedadPago" text="{path:'Butxt'}" />                                    							
+									<Text id="rowMonedaPago" text="{path:'Waers'}" />
+									<Text id="rowImportePago" text="{path:'Wrbtr' , formatter:'.formatter.replaceZeros'}" />
+									
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<l:HorizontalLayout id="horizontalLayoutBotones">				
+					<Button id="downloadButton" text="Descargar orden de pago" press="onPressDownloadPago" />
+					<Button id="downloadButtonRet"  class="sapUiSmallMarginBegin" text="Este pago no tiene retenciones" enabled="false" press="onPressDownloadPago" />
+					</l:HorizontalLayout >				
+					</l:VerticalLayout>
+						</ux:blocks>
+					
+					</ux:ObjectPageSubSection>
+					
+				</ux:subSections>
+			</ux:ObjectPageSection>  
+			<ux:ObjectPageSection id="pageSectionPosicionesCancelados" title="Documentos cancelados">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionPosicionesCancelados">
+						<ux:blocks>
+						<Table
+                            id="tableCanceladosPago"
+                            inset="false"
+                            items="{path: '/ListaCancelados'}"
+							noDataText="Sin posiciones"
+					    >
+						<columns>
+							<Column id="columnRefCancelados" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textRefCancelados" text="Referencia"/>
+							</Column>
+							<Column id="idcolumnTipoCancelados" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="idtextTipoCancelados" text="Tipo de pago"/>									
+							</Column>
+							<Column id="idcolumnFechaCancelados" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="idtextFechaCancelados" text="Fecha"/>									
+							</Column>
+							<Column id="columnMonedaCancelados" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMonedaCancelados" text="Moneda"/>
+							</Column>
+							<Column id="columnImporteCancelados" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textImporteCancelados" text="Importe"/>								
+							</Column>
+							<Column id="columnNdCancelados" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textNdCancelados" text="ND"/>								
+							</Column>
+														
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnItemPosCancelados" vAlign="Middle">
+								<cells>
+								
+                                    <Text id="rowPosCancelados" text="{Buzei}" />
+                                    <Text id="rowFechaCancelados"  text="{path:'Augdt' , formatter:'.formatter.stringDate'}" />
+                                    <Text id="rowMedioCancelados" text="{Txt50}" />
+                                    <Text id="rowSociedadCancelados" text="{path:'Butxt'}" />                                    							
+									<Text id="rowMonedaCancelados" text="{path:'Waers'}" />
+									<Text id="rowImporteCancelados" text="{path:'Wrbtr' , formatter:'.formatter.replaceZeros'}" />
+									
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+					
+				</ux:subSections>
+			</ux:ObjectPageSection>        
+		</ux:sections>
+	</ux:ObjectPageLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,134 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+>
+<f:DynamicPage id="dynamicPagos" >			
+				<f:header>
+					<f:DynamicPageHeader id="pageHeaderPagos">
+						<f:content>
+							<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarPagos" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+								<fb:filterGroupItems>
+								<fb:FilterGroupItem id="groupItemPagos" name="FechaDesde" label="Fecha desde" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:DatePicker
+												id="fechaPickerPagos"												
+												valueFormat="yyyyMMdd"
+												displayFormat="dd/MM/yyyy"
+												change="onChangeFechaDesde"/>											
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem id="groupItemHastaPagos" name="Fecha" label="Fecha hasta" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:DatePicker
+												id="fechaHastaPickerPagos"											
+												valueFormat="yyyyMMdd"
+												displayFormat="dd/MM/yyyy"/>											
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem id="filterPagos" name="Name" label="Pedido" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:Input
+												id="inputPedidoPagos"
+												name="Pagos"													
+												>												
+											</m:Input>
+										</fb:control>
+									</fb:FilterGroupItem>
+									
+									<fb:FilterGroupItem id="filterGroupPagos" name="PagosName" label="Factura" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:Input
+												id="inputFacturaPagos" 
+												name="Valor"	
+																						
+											/>
+										</fb:control>
+									</fb:FilterGroupItem>																
+																
+								</fb:filterGroupItems>
+							</fb:FilterBar>
+							<m:Button class="sapUiSmallMarginTop"
+								text="Buscar"
+								press="onFilterPagos" 											
+								/>
+						</f:content>
+					</f:DynamicPageHeader>
+				</f:header>
+				<f:content>
+				<Table
+                            id="tableListaPagos"
+                            rows="{path: '/PagoSet/results'}"
+							selectionMode="None"
+				>
+					<extension>
+						<m:OverflowToolbar  style="Clear">
+							<m:Button icon="sap-icon://excel-attachment" 
+								text="Exportar"
+								press="onExportPagos" 											
+								/>
+							<m:ToolbarSpacer/>
+							
+							<m:Input id="inputSearchPagos"
+								placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchPagos" />							
+						</m:OverflowToolbar>
+					</extension>
+						<columns>
+							<Column id="columnNumeroPagos" width="8rem" sortProperty="Augbl"  >
+								<m:Label  text="Orden de pago"/>
+								<template>
+									<m:Link text="{path:'Augbl'}" press="handleLinkPago"  />	
+								</template>											
+							</Column>
+							
+							<Column id="columnFechaPagos" width="6rem" sortProperty="Augdt"  >
+							
+								<m:Label  text="Emisión"/>
+								<template>
+									<m:Text id="rowFechaPagos" text="{path:'Augdt' , formatter:'.formatter.stringDate'}" />
+								</template>
+							</Column>
+							<Column id="columnFacturaPagos" sortProperty="Xblnr" >								
+								<m:Label  text="Factura"/>
+								<template>
+									<m:Link id="linkFacturaPagos" text="{path:'Xblnr'}" />
+								</template>									
+							</Column>							
+							<Column id="columnPedidoPagos"  width="7rem" sortProperty="Ebeln" >
+								<m:Label  text="Pedido"/>
+								<template>
+									<m:Link id="linkPedidoPagos" text="{Ebeln}" press="handleLinkPedido" />
+								</template>								
+							</Column>
+							<Column id="columnContablePagos" width="8rem" sortProperty="DocFiFac"  >								
+								<m:Label  text="Doc Contable"/>
+								<template>
+									<m:Text id="rowDocuPagos" text="{path:'DocFiFac'}" />
+								</template>						
+							</Column>
+							<Column id="columnDocumentoPagos" width="8rem" sortProperty="DocMmFac"  >
+								<m:Label  text="Documento MM"/>
+								<template>
+									<m:Text text="{path:'DocMmFac'}" />	
+								</template>						
+							</Column>
+							<Column id="columnSociedadPagos" width="8rem" sortProperty="Butxt" >
+									
+								<m:Label  text="Sociedad"/>
+								<template>
+									<m:Text id="rowSociedad" text="{Butxt}" />
+								</template>								
+							</Column>						    
+						</columns>					
+																									
+								
+					</Table>
+				</f:content>
+			</f:DynamicPage>
+
+</core:FragmentDefinition>

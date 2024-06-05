@@ -1,0 +1,29 @@
+/* Enter your custom styles here *//* Enter your custom styles here */
+.sapMSplitContainerMaster {    
+    width: 16rem;
+
+}
+
+.sapUiSizeCompact .sapTntNavLI {
+    padding: 1.5rem 0.75rem 23.75rem 0.75rem !important;
+}
+
+.sapSuiteBMCChart .sapSuiteBMCResponsive {    
+    top: 17px;
+}
+
+.labelHeader {    
+    margin-top: 4px !important;
+}
+
+
+
+.SapSuiteRMCInnerContainer
+{    
+    width: 140px !important ;
+}
+
+.sapMLabelTextWrapper
+{    
+    font-weight: bold;
+}

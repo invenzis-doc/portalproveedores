@@ -1,0 +1,143 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:t="sap.ui.table"
+>
+	<m:Title text="Confirmación" class="sapUiMediumMargin" titleStyle="H4" />				
+	<f:SimpleForm 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="3"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+			<f:content>
+				<m:Label text="Proveedor" />
+				<m:Text  text="{
+					path : '/FacturaCarga/CodigoProveedor'
+					}"   />
+				
+				<m:Label text="N° de Factura" />
+				<m:Text width="10rem" text="{
+				path : '/FacturaCarga/numeroFactura'}" />
+							
+				
+				<m:Label text="Tipo de Comprobante" />
+				<m:Text text="{/FacturaCarga/tipoComprobante}" width="10rem" />
+									
+				<m:Label text="Código Autorización"  />
+				<m:Text  text="{path : '/FacturaCarga/CodAutorizacion'}" width="10rem" />
+
+				<m:Label text="Fecha de Emisión" />
+				<m:Text width="10rem" text="{
+						path : '/FacturaCarga/fechaEmision'}"  />		
+					
+				<m:Label text="Importe Total"  />
+				<m:Text text="{path : '/FacturaCarga/importe'}" width="8rem"  />
+				
+				<m:Label text="Moneda" />
+				<m:Text text="{/FacturaCarga/Moneda}" width="8rem"  />
+									
+				
+				<m:Label text="Tipo" />
+				<m:Text text="{/FacturaCarga/TipoFactura}" width="10rem"  />
+					
+				<m:Label text="Fact referencia" />
+				<m:Text text="{/FacturaCarga/FacturaReferencia}" width="10rem"/>				
+				
+				<m:Label text="Archivo" />
+				<m:Button 
+				text="Ver Documento"
+				press="onVerDocumento" width="8rem"											
+				/>	
+			
+			<m:Label text="Comentarios" />
+			<m:Text text="{/FacturaCarga/Comentarios}"  />			
+				
+			</f:content>
+		</f:SimpleForm>
+		
+	<t:Table
+		id="tableConfirmacionCarga"						
+		rows="{path: '/PosicionesCargaSet'}"	
+		selectionMode="None"
+	>
+
+		
+		<columns>
+				<Column  sortProperty="Ebeln" width="7rem" >
+					<m:Label text="Pedido" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Ebeln}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Ebelp" width="5rem" >
+					<m:Label text="Pos" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Ebelp}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Matnr" >
+					<m:Label text="Código Material" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Matnr}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Txz01" >
+					<m:Label text="Descripción" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Txz01}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Menge" width="6rem" >
+					<m:Label text="Cant" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Menge}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Meins" width="4rem" >
+					<m:Label text="Unidad" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Meins}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Netpr" >
+					<m:Label text="$" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Netpr}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Pendiente" >
+					<m:Label text="Total" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Pendiente}" />
+					</template>
+				</Column>					
+		</columns>						
+	</t:Table>	
+	<m:Button class="sapUiSmallMargin"
+			text="Volver"
+			press="onVolverConfirmarCarga" 											
+	/>	
+	<m:Button type="Emphasized" class="sapUiSmallMargin"
+			text="Continuar"
+			press="onContinuarConfirmarCarga" 											
+			/>			    	
+			
+</core:FragmentDefinition>

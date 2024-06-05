@@ -1,0 +1,270 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+    xmlns:ux="sap.uxap"
+>
+    <ux:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true">
+		<ux:headerTitle>
+			<ux:ObjectPageHeader id="headerForTest"
+							  objectTitle="Datos de Cabecera"
+							  showTitleSelector="false"
+							  showMarkers="false"
+							  markFavorite="true"
+							  markFlagged="true"
+							  markChanges="false"
+							  markChangesPress="handleMarkChangesPress"
+							  objectSubtitle="{/PedidoSeleccionado/Ebeln}"
+							  objectImageShape="Circle"
+							  isObjectTitleAlwaysVisible="false"
+							  isObjectSubtitleAlwaysVisible="false"
+							  showPlaceholder="false">	
+							  	<ux:breadcrumbs>					
+				</ux:breadcrumbs>		
+			</ux:ObjectPageHeader>
+		</ux:headerTitle>
+		<ux:headerContent>
+			<l:VerticalLayout id="verticalLayout">
+
+				<l:HorizontalLayout id="horizontalLayout">					
+					<m:Label class="labelHeader" id="labelSoc" text="Sociedad:  " />	
+					<Text id="labelSociedad" text="{/PedidoSeleccionado/Sociedad}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutSoc">					
+					<m:Label class="labelHeader" id="labelOrg" text="Org de compras: "/>
+					<Text id="labelOrgText" text="{/PedidoSeleccionado/OrgCom}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutOrg">					
+					<m:Label class="labelHeader" id="labelGrp" text="Grupo de compras: "/>
+					<Text id="labelGrpText" text="{/PedidoSeleccionado/GruComp}" />
+				</l:HorizontalLayout>
+				
+				<l:HorizontalLayout id="horizontalLayoutClase">					
+					<m:Label class="labelHeader" id="labelClase" text="Clase de orden de compras:  "/>
+					<Text id="labelClaText" text="{/PedidoSeleccionado/ClaDoc}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutInd">					
+					<m:Label class="labelHeader" id="labelEstado" text="Estado de liberación: "/>
+					<Text id="labelIndText" text="{/PedidoSeleccionado/IndLiberacion}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutCentro">					
+					<m:Label class="labelHeader" id="labelCentro" text="Centro: "/>
+					<Text id="labelClaCentro" text="{/PedidoSeleccionado/CenDesc}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutCond">					
+					<m:Label class="labelHeader" id="labelCond" text="Condiciones de pago: "/>
+					<Text id="labelCondText" text="{/PedidoSeleccionado/ZTermDesc}" />
+				</l:HorizontalLayout>			
+							
+			</l:VerticalLayout>			
+			
+		</ux:headerContent>
+		<ux:sections>
+			<ux:ObjectPageSection id="pageSectionPosiciones" title="Posiciones">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionPosiciones">
+						<ux:blocks>
+						<Table
+                            id="tablePosiciones"
+                            inset="false"
+                            items="{path: '/PedidoSeleccionado/PosicionSet/results'}"
+							noDataText="Sin posiciones"
+					    >
+						<columns>
+							<Column id="columnPos" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textPos" text="Pos"/>
+							</Column>
+							<Column id="columnCod" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCod" text="Cod SAP"/>									
+							</Column>
+							<Column id="columnDesc"  width="12rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textDesc" text="Descripción"/>
+							</Column>
+							<Column id="columnmVal" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textVal" text="Val Unit"/>
+							</Column>
+							<Column id="columnCant" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCant" text="Cant"/>
+							</Column>
+							<Column id="columnTotal" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textTotal" text="Total"/>
+							</Column>
+							<Column id="columnMoneda" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMoneda" text="Moneda" />
+							</Column>
+                            <Column id="columnSaldo" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textSaldo" text="Saldo" />
+							</Column>
+                            <Column id="columnEstado" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textEstado" text="Estado" />
+							</Column>
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnPosItem" vAlign="Middle">
+								<cells>
+								
+                                    <Text id="rowPosicion" text="{Ebelp}" />
+                                    <Text id="rowCod"  text="{path:'Matnr' , formatter:'.formatter.removeZeros'}" />
+                                    <Text id="rowDesc" text="{Txz01}" />
+                                    <Text id="rowVal" text="{path:'Netpr' , formatter:'.formatter.removeZeros'}" />                                    							
+									<Text id="rowCant" text="{path:'Menge' , formatter:'.formatter.removeZeros'}" />
+									<Text id="rowTotal" text="{path:'Netwr' , formatter:'.formatter.removeZeros'}" />
+									<Text id="rowMoneda" text="{Waers}" />
+									<Text id="rowSaldo" text="{path:'Saldo' , formatter:'.formatter.removeZeros'}"/>
+                                    <Text id="rowEstado" text="{Butxt}" />	
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+            <ux:ObjectPageSection id="pageSectionEntregas" title="Entregas">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionEntregas">
+						<ux:blocks>
+						<Table
+                            id="tableEntregas"
+                            inset="false"
+                            items="{path: '/PedidoSeleccionado/EntregaSet/results'}"
+							noDataText="Sin entregas"
+					    >
+						<columns>
+							<Column id="columnEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textEntrega" text="Pos"/>
+							</Column>
+							<Column id="columnEntrega2" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCodEntrega" text="Cod SAP"/>									
+							</Column>
+							<Column id="columnDescEntrega"  width="12rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textDescEntrega" text="Descripción"/>
+							</Column>							
+							<Column id="columnCantEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCantEntrega" text="Cant"/>
+							</Column>
+							<Column id="columnTotalEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textTotalEntrega" text="Importe"/>
+							</Column>
+							<Column id="columnMonedaEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMonedaEntrega" text="Moneda" />
+							</Column>
+                            <Column id="columnFechaEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textFechaEntrega" text="Fecha de Entrega" />
+							</Column>
+                            <Column id="columnDocumentoEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textDocumentontrega" text="Documento" />
+							</Column>
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnPosItemEntrega" vAlign="Middle">
+								<cells>								
+                                    <Text id="rowPosicionEntrega" text="{Ebelp}" />
+                                    <Text id="rowCodEntrega" text="{Matnr}" />
+                                    <Text id="rowDescEntrega" text="{Txz01}" />                                                                      							
+									<Text id="rowCantEntrega" text="{Menge}" />
+									<Text id="rowTotalEntrega" text="{path:'Dmbtr' , formatter:'.formatter.removeZeros'}" />
+									<Text id="rowMonedaEntrega" text="{Waers}" />
+									<Text id="rowFechaEntrega" text="{path:'Budat' , formatter:'.formatter.timeDate'}" />
+                                    <Text id="rowDocumentoEntrega" text="{Xblnr}" />	
+								</cells>
+							</ColumnListItem>
+						</items>
+						</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+            <ux:ObjectPageSection id="pageSectionFacturas" title="Facturas">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionFacturas">
+						<ux:blocks>
+							<Table
+                            id="tableFacturas"
+                            inset="false"
+                            items="{path: '/PedidoSeleccionado/FacturaSet/results'}"
+							noDataText="Sin facturas"
+					    >
+						<columns>
+							<Column id="columnFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textFactura" text="Factura"/>
+							</Column>
+							<Column id="columnFechaFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textFechaFactura" text="Fecha"/>									
+							</Column>
+							<Column id="columnImporteFactura"  width="12rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textImporteFactura" text="Importe"/>
+							</Column>
+							<Column id="columnMonedaFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMonedaFactura" text="Moneda" />
+							</Column>
+                            <Column id="columnRemitoFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textRemitoFactura" text="Remito" />
+							</Column>                            
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnPosItemFactura" vAlign="Middle">
+								<cells>								
+                                    <Link id="linkFactura" text="{Xblnr}" press="handleLinkFactura" />
+                                    <Text id="rowFechaFactura" text="{path:'Budat' , formatter:'.formatter.stringDate'}" />
+                                    <Text id="rowImporteFactura" text="{path:'Rmwwr' , formatter:'.formatter.removeZeros'}" />
+                                    <Text id="rowMonedaFactura" text="{Waers}" />                                    							
+									<Text id="rowRemitoFactura" text="{XblnrRem}" />										
+								</cells>
+							</ColumnListItem>
+						</items>
+						</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+            <ux:ObjectPageSection id="pageSectionPagos" title="Pagos">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionPagos">
+						<ux:blocks>
+							<Table
+                            id="tablePagos"
+                            inset="false"
+                            items="{path: '/PedidoSeleccionado/PagoSet/results'}"
+							noDataText="Sin pagos"
+					    >
+						<columns>
+							<Column id="columnPago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textPago" text="Orden de pago"/>
+							</Column>
+							<Column id="columnFechaPago" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textFechaPago" text="Fecha"/>									
+							</Column>
+							<Column id="columnSociedadPago"  width="12rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textSociedadPago" text="Sociedad"/>
+							</Column>							
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnPosItemPagosPedido" vAlign="Middle">
+								<cells>								
+                                    <Link id="linkPagosPedido" text="{Augbl}" press="handleLinkPago" />
+                                    <Text id="rowFechaPagoPedido" text="{path:'Augdt' , formatter:'.formatter.stringDate'}" />
+                                    <Text id="rowSociedadPagoPedido" text="{Butxt}" />                                   
+								</cells>
+							</ColumnListItem>
+						</items>
+						</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>			
+		</ux:sections>
+	</ux:ObjectPageLayout>
+</core:FragmentDefinition>

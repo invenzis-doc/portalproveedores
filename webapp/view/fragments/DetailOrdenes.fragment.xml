@@ -1,0 +1,156 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:t="sap.ui.table"
+>
+<f:DynamicPage id="dy" headerExpanded="{/headerExpanded}">			
+				<f:header>
+					<f:DynamicPageHeader id="pageHeader">
+						<f:content>
+							<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbar" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+								<fb:filterGroupItems>
+									<fb:FilterGroupItem id="groupItem" name="Fecha" label="Fecha Desde" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:DatePicker
+												id="fechaPedidosPicker"											
+												change="onChangeFechaDesde"
+												valueFormat="yyyyMMdd"
+												displayFormat="dd/MM/yyyy"
+											 />											
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem id="groupItemFecha" name="FechaHasta" label="Fecha Hasta" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:DatePicker 
+												id="fechaHastaPedidosPicker"											
+												change="onChangeFilters"
+												valueFormat="yyyyMMdd"
+												displayFormat="dd/MM/yyyy"/>											
+										</fb:control>
+									</fb:FilterGroupItem>		
+									<fb:FilterGroupItem id="filter" name="Name" label="Pedido" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:Input
+												id="inputPedido"
+												name="Pedido"													
+												>												
+											</m:Input>
+										</fb:control>
+									</fb:FilterGroupItem>
+																						
+								</fb:filterGroupItems>
+								
+							</fb:FilterBar>
+						
+						
+						<l:VerticalLayout >
+						
+						<l:HorizontalLayout class="sapUiSmallMarginTop" >					
+							<m:Label class="sapUiTinyMarginTop" text="Completo" />	
+							<m:CheckBox
+									id="checkEstadoV"											
+							/>		
+
+							<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Cumpliendo" />	
+							<m:CheckBox
+							id="checkEstadoA"											
+							/>	
+							<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Sin Tratar  " />	
+							<m:CheckBox
+							id="checkEstadoR"											
+							/>	
+						</l:HorizontalLayout>	
+						<l:HorizontalLayout class="sapUiSmallMarginTop" >					
+							<m:Label class="sapUiTinyMarginTop" text="Solo Anticipos" />	
+							<m:CheckBox
+							id="checkAnticipo"											
+							/>		
+
+							<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Sin Liberar" />	
+							<m:CheckBox
+							id="checkLiberar"											
+							/>	
+							</l:HorizontalLayout>	
+							<m:Button
+								text="Buscar"
+								press="onFilterPedidos" 											
+							/>
+						</l:VerticalLayout >					
+						</f:content>
+					</f:DynamicPageHeader>
+				</f:header>
+				<f:content>
+					<t:Table
+						id="tablePedidos"						
+						rows="{path: '/PedidoSet'}"	
+						selectionMode="None"					
+					>
+					<extension>
+					<m:OverflowToolbar id="overFlowPedidos" style="Clear">
+						<m:Button icon="sap-icon://excel-attachment" 
+								text="Exportar"
+								press="onExportPedidos" 											
+								/>
+						<m:ToolbarSpacer/>
+						<m:Input id="inputSearchPedidos"
+							placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchPedidos" />
+						
+					</m:OverflowToolbar>
+				</extension>
+						<columns>
+							<Column id="columnName" width="4rem" sortProperty="Estado" >
+								<m:Label id="text1" text="Estado" />
+								<template>
+										<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusPedido"		
+										icon="{path:'Estado' , formatter:'.formatter.statusIcon'}"
+										state="{path:'Estado' , formatter:'.formatter.statusColor'}" />
+								</template>
+							</Column>
+							<Column id="columnm2" width="7rem" sortProperty="Ebeln" >
+								<m:Label id="text2" text="Pedido"/>
+								<template>
+										<m:Link id="linkProducto" text="{Ebeln}" press="handleLinkPedido"/>	
+								</template>									
+							</Column>
+							<Column id="columnm4" width="6rem" sortProperty="Bedat" >
+								<m:Label id="text3"   text="Fecha"/>
+								<template>
+									<m:Text id="columnText" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+								</template>
+							</Column>
+							<Column id="columnm5" sortProperty="Netwr" >
+								<m:Label id="text4" text="Valor Neto"/>
+								<template>
+									<m:Text id="columnText2" text="{Netwr} {Waers}" />								
+								</template>
+							</Column>
+							<Column id="columnm6" sortProperty="Vtext">
+								<m:Label id="text5" text="Condiciones de Pago"/>
+								<template>
+									<m:Text id="columnText3" text="{Vtext}" />								
+								</template>
+							</Column>
+							<Column id="columnm7" width="7rem" sortProperty="Bloqu">
+								<m:Label id="text6" text="Bloqueado"/>
+								<template>
+									<m:Text id="columnText4" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+								</template>
+							</Column>
+							<Column id="columnm9" sortProperty="Butxt" >
+								<m:Label id="text7" text="Empresa"  />
+								<template>
+									<m:Text id="columnText5" text="{Butxt}" />							
+								</template>
+							</Column>
+						</columns>						
+					</t:Table>
+				</f:content>
+			</f:DynamicPage>
+
+</core:FragmentDefinition>

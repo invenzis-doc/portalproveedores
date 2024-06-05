@@ -1,0 +1,93 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:t="sap.ui.table"
+>
+	<m:Title text="Seleccione las posiciones de los documentos que esta facturando" class="sapUiMediumMargin" titleStyle="H4" />				
+<t:Table
+	id="tablePosicionesCarga"						
+	rows="{path: '/PosicionesCargaSet'}"	
+	selectionMode="MultiToggle"					
+	>
+		<extension>
+					<m:OverflowToolbar  style="Clear">						
+						<m:ToolbarSpacer/>
+						<m:Input id="inputSearchPosicionesCarga"
+							placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchPosicionesCargaFactura" />						
+					</m:OverflowToolbar>
+		</extension>
+		<columns>
+				<Column  sortProperty="Ebeln" width="7rem" >
+					<m:Label text="Pedido" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Ebeln}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Ebelp" width="5rem" >
+					<m:Label text="Pos" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Ebelp}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Matnr" >
+					<m:Label text="Código Material" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Matnr}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Txz01" >
+					<m:Label text="Descripción" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Txz01}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Menge" width="6rem" >
+					<m:Label text="Cant" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Menge}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Meins" width="4rem" >
+					<m:Label text="Unidad" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Meins}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Netpr" >
+					<m:Label text="$ Unitario" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Netpr}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Pendiente" >
+					<m:Label text="Pendiente" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Pendiente}" />
+					</template>
+				</Column>
+				<Column  sortProperty="Xblnr" >
+					<m:Label text="Remito" />
+					<template>
+							<m:Text class="sapUiSmallMarginBegin" text="{Xblnr}" />
+					</template>
+				</Column>							
+		</columns>						
+	</t:Table>	
+	<m:Button class="sapUiSmallMargin"
+			text="Volver"
+			press="onVolverSelectPosiciones" 											
+	/>	
+	<m:Button type="Emphasized" class="sapUiSmallMargin"
+			text="Continuar"
+			press="onContinuarSelectPosiciones" 											
+	/>	
+	
+		    	
+			
+</core:FragmentDefinition>

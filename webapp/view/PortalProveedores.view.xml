@@ -1,0 +1,90 @@
+<mvc:View controllerName="com.migracion.portalproveedores.controller.PortalProveedores"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"	
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:tnt="sap.tnt" 
+	xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:st="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:f="sap.f">
+   <SplitContainer
+		id="SplitContDemo"
+		initialDetail="detail"
+		initialMaster="master" >
+		<detailPages>
+		<Page id="detailHome" title="Bienvenido Usuario">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailHome" type="XML" />
+		</Page>
+
+		<Page id="detailOrdenes" title="Órdenes de compra">			
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailOrdenes" type="XML" />		
+		</Page>
+
+		<Page id="detailPedido" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailPedido" type="XML" />
+		</Page>
+
+		<Page id="detailFacturas" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailFacturas" type="XML" />
+		</Page>
+		<Page id="detailFactura" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailFactura" type="XML" />
+		</Page>
+		<Page id="detailCargaFactura" title="Carga de Facturas">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailCargaFactura" type="XML" />
+		</Page>
+		<Page id="detailCargaFacturaOrdenes" title="Carga de Facturas">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailCargaFacturaOrdenes" type="XML" />
+		</Page>
+		<Page id="detailCargaFacturaPosiciones" title="Carga de Facturas">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailCargaFacturaPosiciones" type="XML" />
+		</Page>
+		<Page id="detailCargaFacturaConfirmacion" title="Carga de Facturas">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailCargaFacturaConfirmacion" type="XML" />
+		</Page>
+	
+	
+		<Page id="detailPagos" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailPagos" type="XML" />
+		</Page>
+		
+		<Page id="detailPago" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailPago" type="XML" />
+		</Page>
+
+		</detailPages>
+		<masterPages>
+			<Page 
+				id="master"
+				title="Menú"
+				backgroundDesign= "Transparent">
+				<tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+				<tnt:NavigationList id="sideMenu">
+				<tnt:NavigationListItem id="item1" text="Inicio" icon="sap-icon://home" select="onSelectHome" >								
+				</tnt:NavigationListItem>		
+				<tnt:NavigationListItem id="item2" text="Órdenes de compra" icon="sap-icon://sales-order" select="onSelectOrdenes" >						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item3" text="Facturas" icon="sap-icon://customer-briefing" select="onSelectFacturas">						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item8" text="Ingreso Facturas Proveedor" icon="sap-icon://monitor-payments" select="onSelectCargaFacturas">						
+				</tnt:NavigationListItem>
+				<tnt:NavigationListItem id="item4" text="Pagos" icon="sap-icon://payment-approval" select="onSelectPagos">						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item5" text="Reclamos" icon="sap-icon://project-definition-triangle">						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item6" text="Documentos" icon="sap-icon://documents">						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item7" text="Gestión de Avisos" icon="sap-icon://employee">						
+				</tnt:NavigationListItem>						
+			</tnt:NavigationList>		
+	</tnt:SideNavigation>
+			</Page>
+			
+		</masterPages>
+	</SplitContainer>
+        
+</mvc:View>

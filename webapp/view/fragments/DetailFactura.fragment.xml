@@ -1,0 +1,199 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+    xmlns:ux="sap.uxap"
+>
+    <ux:ObjectPageLayout id="ObjectPageLayoutFactura" showTitleInHeaderContent="true">
+		<ux:headerTitle>
+			<ux:ObjectPageHeader id="headerFactura"
+							  objectTitle="Datos de cabecera"							  
+							  showTitleSelector="false"
+							  showMarkers="false"
+							  markFavorite="true"
+							  markFlagged="true"
+							  markChanges="false"
+							  markChangesPress="handleMarkChangesPress"
+							  objectSubtitle="{/FacturaSeleccionada/Xblnr}"
+							  objectImageURI="test-resources/sap/uxap/images/imageID_273624.png"
+							  objectImageShape="Circle"
+							  isObjectTitleAlwaysVisible="false"
+							  isObjectSubtitleAlwaysVisible="false"
+							  showPlaceholder="false">	
+							  	<ux:breadcrumbs>					
+				</ux:breadcrumbs>		
+			</ux:ObjectPageHeader>
+		</ux:headerTitle>
+		<ux:headerContent>
+			
+			<l:VerticalLayout id="verticalLayoutFactura">
+
+				<l:HorizontalLayout id="horizontalLayoutFactura">					
+					<m:Label class="labelHeader" id="labelFechaFactura" text="Fecha de emisión:  " />	
+					<Text id="txtFechaFactura" text="{path:'/FacturaSeleccionada/Bldat' , formatter:'.formatter.stringDate'}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutFechaFactura">					
+					<m:Label class="labelHeader" id="labelFechaContFactura" text="Fecha contabilización: "/>
+					<Text id="labelFechaCont" text="{path:'/FacturaSeleccionada/Budat' , formatter:'.formatter.stringDate'}"  />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutFechaCarga">					
+					<m:Label class="labelHeader" id="labelFechaCarga" text="Fecha carga SAP: "/>
+					<Text id="labelTextFechaCarga" text="{path:'/FacturaSeleccionada/Cpudt' , formatter:'.formatter.stringDate'}"  />
+				</l:HorizontalLayout>
+				
+				<l:HorizontalLayout id="horizontalLayoutFechaBase">					
+					<m:Label class="labelHeader" id="labelFechaBase" text="Fecha base de Pago:  "/>
+					<Text id="labelFechaBaseText" text="{path:'/FacturaSeleccionada/Zfbdt' , formatter:'.formatter.stringDate'}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutSocFactura">					
+					<m:Label class="labelHeader" id="labelSocFactura" text="Sociedad: "/>
+					<Text id="labelFecha" text="{/FacturaSeleccionada/Butxt}" />
+				</l:HorizontalLayout>
+				</l:VerticalLayout >
+
+			<l:VerticalLayout id="verticalLayoutFacturaDerecha" class="sapUiMediumMarginTop">
+
+				<l:HorizontalLayout id="horizontalLayoutUsuario">					
+					<m:Label class="labelHeader" id="labelUsuarioFactura" text="Usuario: "/>
+					<Text id="labelUsuarioText" text="{/FacturaSeleccionada/Usnam}" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout id="horizontalLayoutMonedaFactura">					
+					<m:Label class="labelHeader" id="labelMonedaFactura" text="Moneda: "/>
+					<Text id="labelMonedaFacturaText" text="{/FacturaSeleccionada/Waers}" />
+				</l:HorizontalLayout>	
+
+				<l:HorizontalLayout id="horizontalLayoutTipoFactura">					
+					<m:Label class="labelHeader" id="labelTipoFactura" text="Tipo de cambio: "/>
+					<Text id="labelTipoFacturaText" text="{/FacturaSeleccionada/Kusrf}" />
+				</l:HorizontalLayout>	
+				<l:HorizontalLayout id="horizontalLayoutMontoFactura">					
+					<m:Label class="labelHeader" id="labelMontoFactura" text="Monto total bruto: "/>
+					<Text id="montoFacturaText" text="{/FacturaSeleccionada/Rmwwr}" />
+				</l:HorizontalLayout>		
+				<l:HorizontalLayout id="horizontalLayoutCondFactura">					
+					<m:Label class="labelHeader" id="labelCondFactura" text="Condicion de Pago: "/>
+					<Text id="condicionFacturaText" text="{/FacturaSeleccionada/ZTerm}" />
+				</l:HorizontalLayout>		
+							
+			</l:VerticalLayout>		
+			
+		</ux:headerContent>
+		<ux:sections>
+			<ux:ObjectPageSection id="pageSectionPosicionesFactura" title="">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionPosicionesFactura">
+						<ux:blocks>
+						<Table
+                            id="tablePosicionesFactura"
+                            inset="false"
+                            items="{path: '/FacturaSeleccionada/DetalleSet'}"
+							noDataText="Sin posiciones"
+					    >
+						<columns>
+							<Column id="columnDescFactura" width="32rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textDescFactura" text="Descripción"/>
+							</Column>
+							<Column id="columnCantFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCantFactura" text="Cant"/>									
+							</Column>
+							<Column id="columnPrecioFactura"  minScreenWidth="Tablet" demandPopin="true">
+								<Text id="precioFactura" text="Precio Neto Uni"/>
+								<footer>
+								<l:VerticalLayout id="VerticalFooter">
+								<Text id="textImpuestosFactura" text="Impuestos" class="sapUiTinyMarginTop" />		
+  								<Text id="textOtrosFactura" text="Otros" class="sapUiTinyMarginTop" />	
+								<Text id="textTotalFactura" text="Total" class="sapUiTinyMarginTop"/>		
+								</l:VerticalLayout>						
+  								</footer>	
+								
+							</Column>
+							<Column id="columnMontoFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMontoFactura" text="Monto Neto"/>		
+								<footer>
+								<l:VerticalLayout id="VerticalFooterValor">
+								<Text id="textImpuestosValorFactura" text="ARS 0,00" class="sapUiTinyMarginTop" />		
+  								<Text id="textOtrosFacturaValor" text="ARS 0,00" class="sapUiTinyMarginTop" />	
+								<Text id="textTotalFacturaValor" text="ARS {path:'/FacturaSeleccionada/Rmwwr' , formatter:'.formatter.replaceZeros'}" class="sapUiTinyMarginTop"/>		
+								</l:VerticalLayout>						
+  								</footer>						
+							</Column>	
+																	
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnDetalleItemFactura" vAlign="Middle">
+								<cells>								
+                                    <Text id="rowDescFactura" text="{Txz01}" />
+                                    <Text id="rowCantFactura"  text="{path:'Menge' , formatter:'.formatter.replaceZeros'} {Bstme}" />
+                                    <Text id="rowPrecioFactura" text="{Waers} {path:'Punit' , formatter:'.formatter.replaceZeros'}" />
+                                    <Text id="rowNetoFactura" text="{Waers} {path:'Wrbtr' , formatter:'.formatter.replaceZeros'}" />                                    							
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+			<ux:ObjectPageSection id="pageSectionPedidosFactura" title="">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionPedidosFactura">
+						<ux:blocks>
+						<Table
+                            id="tablePedidosFactura"
+                            inset="false"
+                            items="{path: '/FacturaSeleccionada/PedidoSet'}"
+							noDataText="Sin pedidos"							
+					    >
+						<columns>
+							<Column id="columnPedidoFactura" width="32rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textPedidoFactura" text="Órdenes de compra asociadas"/>
+							</Column>
+																	
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnDetallePedidoFactura" vAlign="Middle">
+								<cells>								
+                                   <Link id="linkPedidoFactura" text="{Ebeln}" press="handleLinkPedido"/>                                                                       							
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						</ux:blocks>
+						<ux:blocks>
+							<Table
+                            id="tablePagosFactura"
+                            inset="false"
+                            items="{path: '/FacturaSeleccionada/PagoSet'}"
+							noDataText="Sin orden de pago"
+					    >
+						<columns>
+							<Column id="columnPagoFactura" width="32rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textPagoFactura" text="Órdenes de pago asociadas"/>
+							</Column>
+																	
+						</columns>
+
+						<items>
+							<ColumnListItem id="columnPagoDescFactura" vAlign="Middle">
+								<cells>								
+                                   <Link id="linkPagoFactura" text="{Ebeln}" press="handleLinkPedido"/>                                                                       							
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+		</ux:sections>
+	</ux:ObjectPageLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,164 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+>
+	
+		<l:HorizontalLayout>
+								
+		    <VBox class="sapUiSmallMargin" width="30rem">
+				<f:SimpleForm id="SimpleFormChange354"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="3"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Proveedor" />
+				<Input  id="codigoProveedor" value="{
+					path : '/FacturaCarga/CodigoProveedor',
+					type : '.customString'
+					}" placeholder="CUIT/Razón Social/Codigo SAP" change="onChangeValidate"  />
+				
+				<Label text="N° de Factura" />
+				<Input id="numeroFactura" width="10rem" value="{
+				path : '/FacturaCarga/numeroFactura',
+				type : '.customFactura'}" placeholder="#Factura" change="onChangeValidate">
+				</Input>				
+				
+				<Label text="Tipo de Comprobante" />
+				<Select id="tipoComprobante" selectedKey="{/FacturaCarga/tipoComprobante}" width="10rem">
+					<items>
+						<core:Item text="" key=""/>
+						<core:Item text="CAE" key="CAE"/>
+						<core:Item text="CAI" key="CAI"/>
+						<core:Item text="CAEA" key="CAEA"/>
+					</items>
+				</Select>				
+				
+				<Label text="Código Autorización"  />
+				<Input id="codAutorizacion" value="{
+				path : '/FacturaCarga/CodAutorizacion',
+				type : '.customCodAutorizacion'}" change="onChangeValidate" placeholder="#CAE o CAI" width="10rem" />
+
+				<Label text="Fecha de Emisión" />
+				<m:DatePicker width="10rem"  
+					id="fechaCargaFactura"			
+					valueFormat="dd/MM/yyyy"
+					displayFormat="dd/MM/yyyy"  
+					value="{
+						path : '/FacturaCarga/fechaEmision',
+						type : '.customFecha'}" change="onChangeValidate" />		
+					
+				<Label text="Importe Total"  />
+				<Input value="{
+				path : '/FacturaCarga/importe',
+				type : '.customImporte'}" placeholder="Ingreso" width="8rem" id="importeFactura" change="onChangeValidate" >
+				</Input>
+				<Label text="Moneda" />
+				<Select  selectedKey="{/FacturaCarga/Moneda}" width="8rem" id="selectMonedaFactura" change="onChangeValidate" >
+					<items>
+						<core:Item text="" key=""/>
+						<core:Item text="ARS" key="ARS"/>
+						<core:Item text="USD" key="USD"/>
+					</items>
+				</Select>					
+				
+				<Label text="Tipo" />
+				<Select  selectedKey="{/FacturaCarga/TipoFactura}" width="10rem" id="selectTipoFactura" change="onChangeValidate" >
+					<items>
+						<core:Item text="" key=""/>
+						<core:Item text="Factura" key="Factura"/>
+						<core:Item text="Nota de Crédito" key="Credito"/>
+						<core:Item text="Nota de Débito" key="Debito"/>
+					</items>
+				</Select>
+
+				<Label  visible="{= ${/FacturaCarga/TipoFactura} === 'Factura' ? true : false }" text="Doc referencia" />
+				<Select id="selectDocRef" visible="{= ${/FacturaCarga/TipoFactura} === 'Factura' ? true : false }"  selectedKey="{/FacturaCarga/DocFactura}" width="12rem" change="onChangeValidate" >
+					<items>
+						<core:Item text="" key=""/>
+						<core:Item text="Orden de Compra (K)" key="K"/>
+					</items>
+				</Select>
+
+				<Label visible="{= ${/FacturaCarga/TipoFactura} === 'Credito' || ${/FacturaCarga/TipoFactura} === 'Debito' ? true : false }" text="Fact referencia" />
+				<Input id="facturaRef" visible="{= ${/FacturaCarga/TipoFactura} === 'Credito' || ${/FacturaCarga/TipoFactura} === 'Debito' ? true : false }" value="{
+				path : '/FacturaCarga/FacturaReferencia',
+				type : '.customString'}" width="10rem"  change="onChangeValidate" >				
+				</Input>
+
+				<Label text="Archivo" />
+				<u:FileUploader
+					id="fileUploaderFactura"
+					name="myFileUpload" width="18rem"
+					uploadUrl="upload/"
+					tooltip="Seleccione archivo"
+					uploadComplete="handleUploadComplete"
+					change="handleSelectFile"
+					typeMissmatch="handleTypeMissmatch"
+					style="Emphasized"
+					fileType="pdf"
+					placeholder="Ningun archivo seleccionado"
+					maximumFileSize="2" 
+					
+					>
+				
+			</u:FileUploader>				
+		
+			<Label text="Comentarios" />
+			<TextArea value="{/FacturaCarga/Comentarios}" rows="4" cols="30" />			
+				
+			</f:content>
+		</f:SimpleForm>
+		<m:Button type="Emphasized" class="sapUiSmallMarginTop"
+								text="Continuar"
+								press="onContinuarSubmitFactura" 											
+								/>	
+
+	</VBox>	
+				 <VBox class="sapUiSmallMargin" width="30rem">
+				
+				<Text text="El número de factura debe ingresarse sin espacios 
+				ni separadores con los datos Tienda emisora, Tipo de factura, Número de Factura como se muestra en el ejemplo." />
+				<Image ariaDetails="detailsActiveImage" width="95%" src="../../images/ejemplo_factura.png"
+					decorative="false"
+					press="handleImage3Press" class="sapUiSmallMargin" />
+
+					<Title text="TCV Cotización Divisas" class="sapUiLargeMarginTop"/>
+					 <HBox class="sapUiSmallMargin" width="30rem">
+					 	<VBox class="sapUiSmallMargin" width="30rem">
+						<Image ariaDetails="detailsActiveImage" src="../../images/dollar.png"
+							decorative="false"
+							press="handleImage3Press" class="" />
+							<Title text="1 u$s" class="sapUiLargeMarginBegin sapUiTinyMarginTop"/>
+						</VBox >
+
+						<VBox class="sapUiSmallMargin" width="30rem">
+						<Image ariaDetails="detailsActiveImage" width="50%" src="../../images/pesos.png"
+							decorative="false"
+							press="handleImage3Press" class="" />
+						<Title text="$ {/FacturaCarga/TipoCambio}" class="sapUiLargeMarginBegin sapUiTinyMarginTop"/>
+						</VBox >
+					 </HBox>	
+				</VBox>	
+
+				</l:HorizontalLayout>		
+			
+</core:FragmentDefinition>

@@ -1,0 +1,199 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"	
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+>
+<f:DynamicPage id="dynamicFacturas" headerExpanded="{/headerExpanded}">			
+				<f:header>
+					<f:DynamicPageHeader id="pageHeaderFacturas">
+						<f:content>
+							<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarFactura" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+								<fb:filterGroupItems>
+								<fb:FilterGroupItem id="groupItemFacturas" name="FechaDesde" label="Fecha desde" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:DatePicker
+												id="fechaFacturasPicker"											
+												change="onChangeFechaDesde"
+												valueFormat="yyyyMMdd"
+												displayFormat="dd/MM/yyyy"
+												
+											/>											
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem id="groupItemHastaFacturas" name="Fecha" label="Fecha hasta" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:DatePicker
+												id="fechaHastaFacturasPicker"											
+												change="handleChange"
+												valueFormat="yyyyMMdd"
+												displayFormat="dd/MM/yyyy"/>											
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem id="filterFacturas" name="Name" label="Pedido" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:Input
+												id="inputPedidoFactura"
+												name="Factura"													
+												>												
+											</m:Input>
+										</fb:control>
+									</fb:FilterGroupItem>
+									
+									<fb:FilterGroupItem id="filterGroupFacturas" name="FacturaName" label="Factura" groupName="Group1" visibleInFilterBar="true">
+										<fb:control>
+											<m:Input
+												id="inputNumeroFactura" 
+												name="Valor"	
+																						
+											/>
+										</fb:control>
+									</fb:FilterGroupItem>								
+								</fb:filterGroupItems>
+							</fb:FilterBar>
+						
+							<l:VerticalLayout >
+
+								<l:HorizontalLayout class="sapUiSmallMarginTop" >					
+									<m:Label class="sapUiTinyMarginTop" text="Completo" />	
+									<m:CheckBox
+									id="checkEstadoFacturasV"											
+									/>		
+
+									<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Cumpliendo" />	
+									<m:CheckBox
+										id="checkEstadoFacturasA"											
+									/>	
+									<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Sin Tratar  " />	
+									<m:CheckBox
+										id="checkEstadoFacturasR"											
+									/>	
+								</l:HorizontalLayout>	
+								<l:HorizontalLayout class="sapUiSmallMarginTop" >					
+									<m:Label class="sapUiTinyMarginTop" text="Anticipos" />	
+									<m:CheckBox
+										id="checkAnticipoFacturas"											
+									/>		
+
+									<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Bloqueados" />	
+									<m:CheckBox
+										id="checkLiberarFacturas"											
+									/>	
+									<m:Label class="sapUiTinyMarginTop sapUiMediumMarginBegin" text="Vencidos" />	
+									<m:CheckBox
+										id="checkVencidoFacturas"											
+									/>	
+								</l:HorizontalLayout>	
+								<m:Button
+								text="Buscar"
+								press="onFilterFacturas" 											
+								/>
+							</l:VerticalLayout >		
+						</f:content>
+					</f:DynamicPageHeader>
+				</f:header>
+				<f:content>
+				<Table
+                        id="tableListaFacturas"  rows="{path: '/FacturaSet/results'}"
+					selectionMode="None" showNoData="true"
+				> 
+					<extension>
+						<m:OverflowToolbar  style="Clear">
+							<m:Button icon="sap-icon://excel-attachment" 
+								text="Exportar"
+								press="onExportFacturas" 											
+								/>
+							<m:ToolbarSpacer/>
+							<m:Input id="inputSearchFacturas"
+								placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchFacturas" />
+							
+						</m:OverflowToolbar>
+					</extension>
+						<columns>
+							<Column id="columnEstadoFacturas" sortProperty="Estado"  width="4rem" >
+								<m:Label  text="Estado"/>
+								<template>
+										<m:ObjectStatus id="statusFacturas"		
+										icon="{path:'Estado' , formatter:'.formatter.statusIcon'}"
+										state="{path:'Estado' , formatter:'.formatter.statusColor'}" />		
+								</template>	
+							</Column>
+							<Column id="columnFacturas" width="8rem" sortProperty="Xblnr" >
+								<m:Label  text="Factura"/>
+								<template>
+										 <m:Link id="linkFacturas" text="{Xblnr}" press="handleLinkFactura" />
+								</template>	
+							</Column>
+							<Column id="columnFechaFacturas" width="6rem"  sortProperty="Budat" >
+								<m:Label  text="Emisión"/>
+								<template>
+										 <m:Text id="rowFechaFacturas" text="{path:'Budat' , formatter:'.formatter.stringDate'}" />	
+								</template>								
+							</Column>							
+							<Column id="columnFechaVencimientoFacturas"  width="6rem" sortProperty="Fvenc"  >
+								<m:Label text="Vencimiento"/>	
+								<template>
+										<m:Text id="rowFechaVencFacturas" text="{path:'Fvenc' , formatter:'.formatter.stringDate'}" />
+								</template>								
+							</Column>
+							<Column id="columnOrdenFacturas" width="8rem" sortProperty="Belnr"  >
+								<m:Label text="Orden de Pago"/>
+								<template>
+										<m:Link id="linkPago" text="{path:'Belnr'}" />
+								</template>									
+							</Column>
+							<Column id="columnDocumentoFacturas" width="6rem" sortProperty="DocMmFac"  >
+								<m:Label text="Doc MM"/>
+								<template>
+										<m:Text id="rowDocuFacturas" text="{path:'DocMmFac'}" />
+								</template>										
+							</Column>
+							<Column id="columnContableFacturas" width="6rem" sortProperty="DocFiFac" >
+								<m:Label text="Contable"/>
+								<template>
+										<m:Text id="rowContableFacturas" text="{path:'DocFiFac'}" />
+								</template>									
+							</Column>
+							<Column id="columnPedidoFacturas" width="6rem" sortProperty="Ebeln"  >
+								<m:Label text="Pedido"/>
+								<template>
+										<m:Link id="linkPedido" text="{Ebeln}" press="handleLinkPedido"/>
+								</template>									
+							</Column>
+							<Column id="columnMonedaFacturas" width="4rem" sortProperty="Waers"  >
+								<m:Label text="Mon."/>
+								<template>
+										<m:Text id="rowMonedaFacturas" text="{Waers}" />
+								</template>										
+							</Column>
+							<Column id="columnImporteFacturas"  width="6rem" >
+								<m:Label text="Valor"/>
+								<template>
+										<m:Text id="rowImporteFacturas" text="{path:'Rmwwr' , formatter:'.formatter.removeZeros'}" /> 
+												
+								</template>	
+							</Column>	
+							<Column  width="10rem" visible="false">
+								<m:Label text="Valor"/>
+								<template>										
+										<m:Text id="hiddenGjahr" text="{path:'Gjahr' }" visible="false" />  		
+								</template>	
+							</Column>	
+							<Column  width="10rem" visible="false">
+								<m:Label text="Valor"/>
+								<template>										
+										<m:Text id="hiddenAnio" text="{path:'Gjahr' }" visible="false" />  		
+								</template>	
+							</Column>									                         
+						</columns>
+
+						
+						</Table>
+				</f:content>
+			</f:DynamicPage>
+
+</core:FragmentDefinition>
