@@ -97,7 +97,7 @@ sap.ui.define([
                     success: function(data, response) {
                         var tipoCambio = data.TipoCambio.replace(".",",").substring(0, data.TipoCambio.length - 2);
                         oModel.setProperty("/FacturaCarga/TipoCambio", tipoCambio);
-                        that.getSplitAppObj().toDetail(that.createId("detailCargaFactura")); @                                               
+                        that.getSplitAppObj().toDetail(that.createId("detailCargaFactura"));                                              
                     },
                     error: function(oError) {
                     }
