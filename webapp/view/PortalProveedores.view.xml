@@ -56,6 +56,10 @@
 			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailPago" type="XML" />
 		</Page>
 
+		<Page id="detailClients" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragments.DetailClients" type="XML" />
+		</Page>
+
 		</detailPages>
 		<masterPages>
 			<Page 
@@ -79,7 +83,9 @@
 				<tnt:NavigationListItem id="item6" text="Documentos" icon="sap-icon://documents">						
 				</tnt:NavigationListItem>	
 				<tnt:NavigationListItem id="item7" text="Gestión de Avisos" icon="sap-icon://employee">						
-				</tnt:NavigationListItem>						
+				</tnt:NavigationListItem>
+				<tnt:NavigationListItem id="item9" text="Clientes" icon="sap-icon://account" select= "onSelectClients">						
+				</tnt:NavigationListItem>					
 			</tnt:NavigationList>		
 	</tnt:SideNavigation>
 			</Page>
