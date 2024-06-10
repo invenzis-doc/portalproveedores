@@ -381,9 +381,6 @@ sap.ui.define([
                 });
                 this.getSplitAppObj().toDetail(this.createId("detailPagos"));
             },
-            onSelectClients: function() {
-                this.getSplitAppObj().toDetail(this.createId("detailClients"));
-            },
             onFilterPagos: function() {
                 var that = this;
                 that.byId("tableListaPagos").setBusy(true);

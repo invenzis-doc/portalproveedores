@@ -1,0 +1,52 @@
+<mvc:View controllerName="com.migracion.portalproveedores.controller.PortalClientes"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"	
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:tnt="sap.tnt" 
+	xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:st="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:f="sap.f">
+   <SplitContainer
+		id="SplitContDemo"
+		initialDetail="detail"
+		initialMaster="master" >
+		<detailPages>
+		<Page id="detailHome" title="Bienvenido Usuario">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragmentsClientes.DetailHome" type="XML" />
+		</Page>
+
+		<Page id="detailReportes" title="">
+			<core:Fragment fragmentName="com.migracion.portalproveedores.view.fragmentsClientes.DetailReportes" type="XML" />
+		</Page>
+
+		</detailPages>
+		<masterPages>
+			<Page 
+				id="master"
+				title="Menú"
+				backgroundDesign= "Transparent">
+				<tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+				<tnt:NavigationList id="sideMenu">
+				<tnt:NavigationListItem id="item1" text="Inicio" icon="sap-icon://home" select="onSelectHome" >								
+				</tnt:NavigationListItem>		
+				<tnt:NavigationListItem id="item2" text="Pedidos de venta" icon="sap-icon://sales-order" >						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item3" text="Facturas" icon="sap-icon://customer-briefing" >						
+				</tnt:NavigationListItem>	
+				<tnt:NavigationListItem id="item8" text="Reportes" icon="sap-icon://activity-2" select="onSelectReportes">						
+				</tnt:NavigationListItem>
+				<tnt:NavigationListItem id="item4" text="Pagos" icon="sap-icon://payment-approval" >						
+				</tnt:NavigationListItem>				
+			</tnt:NavigationList>		
+	</tnt:SideNavigation>
+			</Page>
+			
+		</masterPages>
+	</SplitContainer>
+        
+</mvc:View>

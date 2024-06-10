@@ -1,0 +1,42 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:ux="sap.uxap">
+
+    <l:HorizontalLayout>
+		<VBox class="sapUiSmallMargin" width="30rem">
+			<f:SimpleForm id="SimpleFormClients"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				title="Clientes"
+				labelSpanXL="3"
+				labelSpanL="3"
+				labelSpanM="3"
+				labelSpanS="3"
+				adjustLabelSpan="false"
+				emptySpanXL="4"
+				emptySpanL="4"
+				emptySpanM="4"
+				emptySpanS="0"
+				columnsXL="1"
+				columnsL="1"
+				columnsM="1">
+				
+				<f:content>
+					<Label text="Clientes" />
+					<Input  id="codigoCliente" />
+					
+					<Label text="N° de Factura" />
+					<Input id="numeroFactura2" width="10rem"/>						
+					
+
+				</f:content>
+			</f:SimpleForm>
+		</VBox>	
+	</l:HorizontalLayout>
+</core:FragmentDefinition>
