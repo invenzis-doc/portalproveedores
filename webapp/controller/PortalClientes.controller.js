@@ -10,7 +10,7 @@ sap.ui.define([
      */
     function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
         "use strict";
-        //index.html?sap-ui-xx-viewCache=false#/clientes
+        //index.html?sap-ui-xx-viewCache=false#/clientes (al ejecutarlo como noflp)
         var EdmType = exportLibrary.EdmType;
 
         return Controller.extend("com.migracion.portalproveedores.controller.PortalClientes", {
@@ -53,6 +53,18 @@ sap.ui.define([
             
             onSelectReportes: function() {
                 this.getSplitAppObj().toDetail(this.createId("detailReportes"));
+            },
+
+            onSelectFacturas: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
+            },
+
+            onSelectPagos: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailPagos"));
+            },
+
+            onSelectPedidos: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
             },
 
             getSplitAppObj: function () {

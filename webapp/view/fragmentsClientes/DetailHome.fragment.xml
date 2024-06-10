@@ -7,19 +7,6 @@
 	xmlns:m="sap.m"	
 >
 	<l:VerticalLayout id="verticalL">
-				<l:HorizontalLayout class="sapUiMediumMarginBegin" id="horizontal">
-					<!--<m:Panel id="panel" headerText="Positive">-->
-					<Label id="labelRadial" text="SLA 1" class="sapUiMediumMarginTop sapUiTinyMarginBegin" />
-					<r:RadialMicroChart id="radial1"  height="12em" size="S" percentage="25" valueColor="Critical" press="press" class="sapUiSmallMarginTop" ></r:RadialMicroChart>
-					<Label id="labelRadial2" text="SLA 2" class="sapUiMediumMarginTop sapUiTinyMarginBegin"  />
-					<r:RadialMicroChart  id="radial2" height="12em" size="S" percentage="55" press="press" class="sapUiSmallMarginTop"></r:RadialMicroChart>
-					<Label id="labelRadial3" text="SLA 3" class="sapUiMediumMarginTop"  />
-					<r:RadialMicroChart  id="radial3" height="12em" size="S" percentage="85" valueColor="Good" press="press" class="sapUiSmallMarginTop"  ></r:RadialMicroChart>
-					<!--</m:Panel >-->
-					<l:VerticalLayout  id="verticalL2">
-					
-					</l:VerticalLayout>
-				</l:HorizontalLayout>
 				<Panel id="panelList" width="auto" height="25rem" class="sapUiSmallMarginTop sapUiTinyMarginBegin" accessibleRole="Region" headerText="Novedades">
 					<List id="list"
 						headerText=""
@@ -34,84 +21,4 @@
 					</List>
 				</Panel >
 			</l:VerticalLayout>	
-			<l:VerticalLayout  id="verticalL3">
-				<l:HorizontalLayout   id="horizontal10">
-					<GenericTile class="sapUiSmallMargin" id="Tile" press="press" header="Rendimientos Mensuales" subheader="Junio" frameType="OneByOne" >
-						<tileContent>
-							<TileContent id="content" >
-								<m:content>							
-									<r:ColumnMicroChart size="S" id="column1" press="press" class="sapUiSmallMargin">
-										<r:leftTopLabel>
-											<r:ColumnMicroChartLabel id="column2" label="0M" color="Good"/>
-										</r:leftTopLabel>
-										<r:rightTopLabel>
-											<r:ColumnMicroChartLabel label="80M" id="column3" color="Critical"/>
-										</r:rightTopLabel>
-										<r:leftBottomLabel>
-											<r:ColumnMicroChartLabel label="Junio 1" id="column4"/>
-										</r:leftBottomLabel>
-										<r:rightBottomLabel>
-											<r:ColumnMicroChartLabel label="Junio 30" id="column5"/>
-										</r:rightBottomLabel>
-										<r:columns>
-											<r:ColumnMicroChartData value="60" color="Error" id="column7" />
-											<r:ColumnMicroChartData value="80" color="Error" id="colummicro" />
-											<r:ColumnMicroChartData value="100" color="Error" id="column8" />
-											<r:ColumnMicroChartData value="60" color="Neutral" id="column11"/>
-											<r:ColumnMicroChartData value="55" color="Neutral" id="column12"/>
-											<r:ColumnMicroChartData value="15" color="Neutral" id="column13"/>
-										</r:columns>
-								</r:ColumnMicroChart>
-									</m:content>
-								</TileContent>			
-							</tileContent>
-						</GenericTile>
-			<GenericTile class="sapUiSmallMargin" id="Tile5" press="press" header="Acumulado anual" subheader="" frameType="OneByOne" >
-				<tileContent>
-					<TileContent id="content32" >
-						<m:content >	
-						<r:BulletMicroChart   id="micro12" scale="M" targetValue="100"
-							forecastValue="110" showValueMarker="true" size="Responsive">
-							<r:actual>
-								<r:BulletMicroChartData id="BullMicro" value="120" color="Good" />
-							</r:actual>
-							<r:thresholds>
-								<r:BulletMicroChartData id="microChartData" value="0" color="Error" />
-								<r:BulletMicroChartData id="microChartData1" value="50" color="Critical" />
-								<r:BulletMicroChartData id="microChartData2" value="150" color="Critical" />
-								<r:BulletMicroChartData id="microChartData3" value="200" color="Error" />
-							</r:thresholds>
-						</r:BulletMicroChart>
-						</m:content>
-					</TileContent>			
-				</tileContent>
-			</GenericTile>		
-			</l:HorizontalLayout >	
-			<GenericTile class="sapUiSmallMargin" width="24rem" id="Tile2" press="press" header="Producción" subheader="Seguimiento" frameType="TwoByOne" >
-				<tileContent>				
-					<TileContent id="tile3" footer="Óptimo">
-						<m:content>
-							<r:HarveyBallMicroChart id="harveu" total="100" size="Responsive" alignContent="Right"
-							totalScale="Mrd">
-							<r:items>
-								<r:HarveyBallMicroChartItem id="chartHarvey" fraction="78"
-									color="Good" fractionScale="Mrd" />
-							</r:items>
-						</r:HarveyBallMicroChart>
-						</m:content>
-					</TileContent>
-					<TileContent id="tile4" footer="Pobre">
-						<m:content>
-							<r:HarveyBallMicroChart id="harvey2" total="100" size="Responsive" alignContent="Right"
-							totalScale="Mrd">
-							<r:items>
-								<r:HarveyBallMicroChartItem id="chartHarvey2" fraction="15"
-									color="Error" fractionScale="Mrd" />
-							</r:items>
-						</r:HarveyBallMicroChart>
-						</m:content>
-					</TileContent>
-				</tileContent>
-			</GenericTile>
-			</l:VerticalLayout>
 </core:FragmentDefinition>

@@ -10,10 +10,10 @@
 
     <l:HorizontalLayout>
 		<VBox class="sapUiSmallMargin" width="30rem">
-			<f:SimpleForm id="SimpleFormReportes"
+			<f:SimpleForm id="SimpleFormPagos"
 				editable="true"
 				layout="ResponsiveGridLayout"
-				title="Reportes"
+				title="Pagos"
 				labelSpanXL="3"
 				labelSpanL="3"
 				labelSpanM="3"
@@ -28,12 +28,8 @@
 				columnsM="1">
 				
 				<f:content>
-					<Label text="Reportes" />
-					<Input  id="codigoReporte" />
-					
-					<Label text="N° de Factura" />
-					<Input id="numeroFactura2" width="10rem"/>						
-					
+					<Label text="Pagos" />
+					<Input  id="codigoPago" />				
 
 				</f:content>
 			</f:SimpleForm>
