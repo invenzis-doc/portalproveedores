@@ -31,6 +31,11 @@
 					<Label text="Pagos" />
 					<Input  id="codigoPago" />				
 
+					<Label text="Proveedor" />
+					<Input  id="codigoProveedorPago" />					
+					
+					<Label text="Estado" />
+					<Input id="estadoPago" width="10rem"/>	
 				</f:content>
 			</f:SimpleForm>
 		</VBox>	

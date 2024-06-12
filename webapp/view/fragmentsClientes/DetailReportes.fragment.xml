@@ -6,6 +6,7 @@
 	xmlns:l="sap.ui.layout" 
 	xmlns:m="sap.m"
 	xmlns:f="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
     xmlns:ux="sap.uxap">
 
     <l:HorizontalLayout>
@@ -28,12 +29,56 @@
 				columnsM="1">
 				
 				<f:content>
-					<Label text="Reportes" />
-					<Input  id="codigoReporte" />
-					
-					<Label text="N° de Factura" />
-					<Input id="numeroFactura2" width="10rem"/>						
-					
+					<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarReporteClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem id="filterReporteId" name="ReporteName" label="Reporte" groupName="Group2" visibleInFilterBar="true">
+								<fb:control>
+									<m:Input
+										id="inputReporte"
+										name="Reporte"													
+										>												
+									</m:Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="filterCategoriaReporte" name="CategoriaName" label="Categoria" groupName="Group2" visibleInFilterBar="true">
+								<fb:control>
+									<m:Input
+										id="inputCategoriaReporte"
+										name="CategoriaReporte"													
+										>												
+									</m:Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="groupItemReporte" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+								<fb:control>
+									<m:DatePicker
+										id="fechaReportePicker"											
+										change="onChangeFechaDesde"
+										valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy"
+									/>											
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="groupItemHastaReporte" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+								<fb:control>
+									<m:DatePicker
+										id="fechaHastaReportePicker"											
+										change="handleChange"
+										valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy"/>											
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="filterEstadoReporte" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
+								<fb:control>
+									<m:Input
+										id="inputEstadoReporte"
+										name="Estado"													
+										>												
+									</m:Input>
+								</fb:control>
+							</fb:FilterGroupItem>							
+						</fb:filterGroupItems>
+					</fb:FilterBar>			
 
 				</f:content>
 			</f:SimpleForm>

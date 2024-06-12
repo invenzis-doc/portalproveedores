@@ -1,15 +1,16 @@
 <core:FragmentDefinition
-	xmlns="sap.m"
+	xmlns="sap.ui.table"
 	xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
     xmlns:r="sap.suite.ui.microchart"
 	xmlns:l="sap.ui.layout" 
 	xmlns:m="sap.m"
 	xmlns:f="sap.ui.layout.form"
-    xmlns:ux="sap.uxap">
+    xmlns:ux="sap.uxap"
+	xmlns:fb="sap.ui.comp.filterbar">
 
-    <l:HorizontalLayout>
-		<VBox class="sapUiSmallMargin" width="30rem">
+    <l:VerticalLayout>
+		<m:VBox class="sapUiSmallMargin">
 			<f:SimpleForm id="SimpleFormFacturas"
 				editable="true"
 				layout="ResponsiveGridLayout"
@@ -28,10 +29,51 @@
 				columnsM="1">
 				
 				<f:content>
-					<Label text="Facturas" />
-					<Input  id="codigoFactura" />
+					<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarFacturaClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+						<fb:filterGroupItems>
+						<fb:FilterGroupItem id="groupItemFacturas" name="FechaDesde" label="Fecha desde" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<m:DatePicker
+										id="fechaFacturasPicker"											
+										change="onChangeFechaDesde"
+										valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy"
+										
+									/>											
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="groupItemHastaFacturas" name="Fecha" label="Fecha hasta" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<m:DatePicker
+										id="fechaHastaFacturasPicker"											
+										change="handleChange"
+										valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy"/>											
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="filterFacturas" name="Name" label="Pedido" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<m:Input
+										id="inputPedidoFactura"
+										name="Factura"													
+										>												
+									</m:Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							
+							<fb:FilterGroupItem id="filterGroupFacturas" name="FacturaName" label="Factura" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<m:Input
+										id="inputNumeroFactura" 
+										name="Valor"	
+																				
+									/>
+								</fb:control>
+							</fb:FilterGroupItem>								
+						</fb:filterGroupItems>
+					</fb:FilterBar>
 				</f:content>
 			</f:SimpleForm>
-		</VBox>	
-	</l:HorizontalLayout>
+		</m:VBox>
+	</l:VerticalLayout>
 </core:FragmentDefinition>

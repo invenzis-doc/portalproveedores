@@ -50,9 +50,9 @@
 				</tnt:NavigationListItem>	
 				<tnt:NavigationListItem id="item3" text="Facturas" icon="sap-icon://customer-briefing" select="onSelectFacturas">						
 				</tnt:NavigationListItem>	
-				<tnt:NavigationListItem id="item8" text="Reportes" icon="sap-icon://activity-2" select="onSelectReportes">						
-				</tnt:NavigationListItem>
 				<tnt:NavigationListItem id="item4" text="Pagos" icon="sap-icon://payment-approval" select="onSelectPagos">						
+				</tnt:NavigationListItem>
+				<tnt:NavigationListItem id="item5" text="Repartos" icon="sap-icon://activity-2" select="onSelectReportes">						
 				</tnt:NavigationListItem>				
 			</tnt:NavigationList>		
 	</tnt:SideNavigation>
