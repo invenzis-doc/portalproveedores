@@ -1,0 +1,47 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:ux="sap.uxap"
+	xmlns:f="sap.f">
+	<f:DynamicPage id="dyDET" headerExpanded="{/headerExpanded}">			
+			<f:title>
+			<f:DynamicPageTitle id="DynamicPageTitlePedidoDET">
+				<f:heading>
+					<m:Title text="Datos de cabecera" id="TitleDET"/>    
+				</f:heading>
+				<f:expandedContent>
+					<m:Label id="LabelDET" text="x:"/>
+					<m:FormattedText
+						htmlText="xxxx"
+						id="addressDET" />
+				</f:expandedContent>
+    		</f:DynamicPageTitle>
+			</f:title>
+			<f:content>
+				<m:IconTabBar class="sapUiResponsiveContentPadding" id="IconTab" expanded="{device>/isNoPhone}" headerMode="Inline">
+				<m:items>
+					<m:IconTabFilter key="detail" text="Detail" id="OfertaTabFilter">
+						<m:Text text="POSNR" id="POSNR1"/>
+                        <m:Text text="POSNR" id="MATNR1"/>
+                        <m:Text text="POSNR" id="ARKTX1"/>
+                        <m:Text text="POSNR" id="ZMENG1"/>
+                        <m:Text text="POSNR" id="MEINS1"/>
+                        <m:Text text="POSNR" id="NETWR1"/>
+					</m:IconTabFilter>
+					<m:IconTabFilter key="entrega" text="Entrega" id="EntregaTabFilter">
+						<m:Panel/>
+					</m:IconTabFilter>
+					<m:IconTabFilter key="factura" text="Factura" id="FacturaTabFilter">
+						<m:Panel/>
+					</m:IconTabFilter>
+				</m:items>
+				</m:IconTabBar>
+			</f:content>
+		</f:DynamicPage>
+</core:FragmentDefinition>

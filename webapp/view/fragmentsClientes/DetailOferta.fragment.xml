@@ -1,0 +1,135 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:ux="sap.uxap"
+	xmlns:f="sap.f">
+    <l:VerticalLayout>
+		<form:SimpleForm id="SimpleFormOfertas"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Ofertas"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="3"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1">
+			<form:content>
+				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarOfertaClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem id="filterOfertaId" name="OfertaName" label="Oferta" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input
+									id="inputOferta"
+									name="Oferta"													
+									>												
+								</m:Input>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="groupItemOferta" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaOfertaPicker"											
+									change="onChangeFechaDesde"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"
+								/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="groupItemHastaOferta" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaHastaOfertaPicker"											
+									change="handleChange"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="filterEstadoOferta" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input
+									id="inputEstadoOferta"
+									name="Estado"													
+									>												
+								</m:Input>
+							</fb:control>
+						</fb:FilterGroupItem>
+													
+					</fb:filterGroupItems>
+				</fb:FilterBar>			
+			</form:content>
+		</form:SimpleForm>
+		<Table
+			id="tableOferta"						
+			rows="{path: '/PedidoSet'}"	
+			selectionMode="None">
+				<columns>
+					<Column id="columnPedidoOferta" width="7rem" sortProperty="Ebeln" >
+						<m:Label id="text2" text="Pedido"/>
+						<template>
+								<m:Link id="linkPedidoOferta" text="{Ebeln}" press="handleLinkOferta"/>	
+						</template>									
+					</Column>
+					<Column id="columnFecha" width="6rem" sortProperty="Bedat" >
+						<m:Label id="text3"   text="Fecha"/>
+						<template>
+							<m:Text id="columnText" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+						</template>
+					</Column>
+					<Column id="columnCampoVendedor" sortProperty="Vtext">
+						<m:Label id="labelCompoVendedor" text="Campo Vendedor"/>
+						<template>
+							<m:Text id="textCampoVendedor" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnTipoPedido" sortProperty="Vtext">
+						<m:Label id="text5" text="Tipo de Pedido"/>
+						<template>
+							<m:Text id="columnText3" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnMoneda" sortProperty="Vtext">
+						<m:Label id="labelMoneda" text="Moneda"/>
+						<template>
+							<m:Text id="textMoneda" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnm5" sortProperty="Netwr" >
+					<m:Label id="text4" text="Valor Neto"/>
+					<template>
+						<m:Text id="columnText2" text="{Netwr} {Waers}" />								
+					</template>
+					</Column>
+					<Column id="columnm7" width="7rem" sortProperty="Bloqu">
+						<m:Label id="text6" text="Bloqueado"/>
+						<template>
+							<m:Text id="columnText4" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+						</template>
+					</Column>
+					<Column id="columnEstadoOferta" width="4rem" sortProperty="Estado" >
+						<m:Label id="text1" text="Estado" />
+						<template>
+								<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusOferta"		
+								icon="{path:'Estado' , formatter:'.formatter.statusIcon'}"
+								state="{path:'Estado' , formatter:'.formatter.statusColor'}" />
+						</template>
+					</Column>
+				</columns>						
+		</Table>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

@@ -5,92 +5,82 @@
     xmlns:r="sap.suite.ui.microchart"
 	xmlns:l="sap.ui.layout" 
 	xmlns:m="sap.m"
-	xmlns:f="sap.ui.layout.form"
     xmlns:ux="sap.uxap"
-	xmlns:fb="sap.ui.comp.filterbar">
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:f="sap.f">
+		<f:DynamicPage id="dy" headerExpanded="{/headerExpanded}">			
+			<f:title>
+			<f:DynamicPageTitle id="DynamicPageTitle">
+				<f:heading>
+					<m:Title text="Datos de cabecera" id="Title"/>    
+				</f:heading>
+				<f:expandedContent>
+					<m:Label id="Label" text="x:"/>
+					<m:FormattedText
+						htmlText="xxxx"
+						id="address" />
+				</f:expandedContent>
+    		</f:DynamicPageTitle>
+			</f:title>
+			<f:content>
+				<Table
+				id="tablePedidos"						
+				rows="{path: '/PedidoSet'}"	
+				selectionMode="None">
+					<columns>
+					<Column id="columnPedido" width="7rem" sortProperty="Ebeln" >
+						<m:Label id="labelPedido" text="Pedido"/>
+						<template>
+								<m:Link id="linkPedido" text="{Ebeln}" press="handleLinkPedido"/>	
+						</template>									
+					</Column>
+					<Column id="columFechaPedido" width="6rem" sortProperty="Bedat" >
+						<m:Label id="labelFechaPedido"   text="Fecha"/>
+						<template>
+							<m:Text id="textFechaPedido" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+						</template>
+					</Column>
+					<Column id="columnCampoVendedorPedido" sortProperty="Vtext">
+						<m:Label id="labelCampoVendedorPedido" text="Campo Vendedor"/>
+						<template>
+							<m:Text id="textCampoVendedorPedido" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnTipoPedidoPedido" sortProperty="Vtext">
+						<m:Label id="labelTipoPedidoPedido" text="Tipo de Pedido"/>
+						<template>
+							<m:Text id="textTipoPedidoPedido" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnMonedaPedido" sortProperty="Vtext">
+						<m:Label id="labelMonedaPedido" text="Moneda"/>
+						<template>
+							<m:Text id="textMonedaPedido" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnValorNetoPedido" sortProperty="Netwr" >
+					<m:Label id="labelValorNetoPedido" text="Valor Neto"/>
+					<template>
+						<m:Text id="textValorNetoPedido" text="{Netwr} {Waers}" />								
+					</template>
+					</Column>
+					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="Bloqu">
+						<m:Label id="labelBloqueadoPedido" text="Bloqueado"/>
+						<template>
+							<m:Text id="textBloqueadoPedido" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+						</template>
+					</Column>
+					<Column id="columnEstadoPedido" width="4rem" sortProperty="Estado" >
+						<m:Label id="labelEstadoPedido" text="Estado" />
+						<template>
+								<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusPedido"		
+								icon="{path:'Estado' , formatter:'.formatter.statusIcon'}"
+								state="{path:'Estado' , formatter:'.formatter.statusColor'}" />
+						</template>
+					</Column>
+					</columns>						
+				</Table>
+			</f:content>
+		</f:DynamicPage>
 
-    <l:VerticalLayout>
-		<m:VBox class="sapUiSmallMargin">
-			<f:SimpleForm id="SimpleFormPedidos"
-				editable="true"
-				layout="ResponsiveGridLayout"
-				title="Pedidos"
-				labelSpanXL="3"
-				labelSpanL="3"
-				labelSpanM="3"
-				labelSpanS="3"
-				adjustLabelSpan="false"
-				emptySpanXL="4"
-				emptySpanL="4"
-				emptySpanM="4"
-				emptySpanS="0"
-				columnsXL="1"
-				columnsL="1"
-				columnsM="1">
-				
-				<f:content>
-					<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarPedidoClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
-						<fb:filterGroupItems>
-							<fb:FilterGroupItem id="filterId" name="PedidoName" label="Pedido" groupName="Group2" visibleInFilterBar="true">
-								<fb:control>
-									<m:Input
-										id="inputPedido"
-										name="Pedido"													
-										>												
-									</m:Input>
-								</fb:control>
-							</fb:FilterGroupItem>
-							<fb:FilterGroupItem id="filterProveedorPedido" name="ProveedorName" label="Proveedor" groupName="Group2" visibleInFilterBar="true">
-								<fb:control>
-									<m:Input
-										id="inputProveedorPedido"
-										name="Proveedor"													
-										>												
-									</m:Input>
-								</fb:control>
-							</fb:FilterGroupItem>
-							<fb:FilterGroupItem id="groupItemPedido" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
-								<fb:control>
-									<m:DatePicker
-										id="fechaPedidoPicker"											
-										change="onChangeFechaDesde"
-										valueFormat="yyyyMMdd"
-										displayFormat="dd/MM/yyyy"
-									/>											
-								</fb:control>
-							</fb:FilterGroupItem>
-							<fb:FilterGroupItem id="groupItemHastaPedido" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
-								<fb:control>
-									<m:DatePicker
-										id="fechaHastaPedidoPicker"											
-										change="handleChange"
-										valueFormat="yyyyMMdd"
-										displayFormat="dd/MM/yyyy"/>											
-								</fb:control>
-							</fb:FilterGroupItem>
-							<fb:FilterGroupItem id="filterEstadoPedido" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
-								<fb:control>
-									<m:Input
-										id="inputEstadoPedido"
-										name="Estado"													
-										>												
-									</m:Input>
-								</fb:control>
-							</fb:FilterGroupItem>
-							<fb:FilterGroupItem id="filterGroupFacturaPedido" name="FacturaName" label="Factura" groupName="Group2" visibleInFilterBar="true">
-								<fb:control>
-									<m:Input
-										id="inputNumeroFacturaPedido" 
-										name="Valor"	
-																				
-									/>
-								</fb:control>
-							</fb:FilterGroupItem>								
-						</fb:filterGroupItems>
-					</fb:FilterBar>			
-
-				</f:content>
-			</f:SimpleForm>
-		</m:VBox>
-	</l:VerticalLayout>
 </core:FragmentDefinition>

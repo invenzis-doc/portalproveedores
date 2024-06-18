@@ -7,18 +7,21 @@
 	xmlns:m="sap.m"	
 >
 	<l:VerticalLayout id="verticalL">
-				<Panel id="panelList" width="auto" height="25rem" class="sapUiSmallMarginTop sapUiTinyMarginBegin" accessibleRole="Region" headerText="Novedades">
-					<List id="list"
-						headerText=""
-						headerLevel="H2"
-						items="{
-						path: '/SociedadSet'}"   >
-						<StandardListItem id="item"
-							icon="sap-icon://calendar" 
-							title="{Soc} - {Descr}"
-							description="Lorem ipsum dolor sit amet. Et error animi qui ullam ipsum vel velit consequatur "
-						/>
-					</List>
-				</Panel >
-			</l:VerticalLayout>	
+		<Panel id="panelList" width="auto" height="25rem" class="sapUiSmallMarginTop sapUiTinyMarginBegin" accessibleRole="Region" headerText="Novedades">
+			<List id="list"
+				headerText=""
+				headerLevel="H2"
+				items="{
+				path: '/SociedadSet'}"   >
+				<StandardListItem id="item"
+					icon="sap-icon://calendar" 
+					title="{Soc} - {Descr}"
+					description="Lorem ipsum dolor sit amet. Et error animi qui ullam ipsum vel velit consequatur "
+				/>
+			</List>
+		</Panel >
+		
+		<m:Button id="button" text="Read Data" press="onPress" />
+	
+	</l:VerticalLayout>	
 </core:FragmentDefinition>

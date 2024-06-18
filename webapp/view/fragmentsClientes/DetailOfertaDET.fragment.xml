@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:ux="sap.uxap"
+	xmlns:f="sap.f">
+    <f:DynamicPage id="dyDET2" headerExpanded="{/headerExpanded}">			
+			<f:title>
+			<f:DynamicPageTitle id="DynamicPageTitlePedidoDET2">
+				<f:heading>
+					<m:Title text="Datos de cabecera" id="TitleDET2"/>    
+				</f:heading>
+				<f:expandedContent>
+					<m:Label id="LabelDET2" text="x:"/>
+					<m:FormattedText
+						htmlText="xxxx"
+						id="addressDET2" />
+                        <m:Text text="POSNR" id="POSNR2"/>
+                        <m:Text text="POSNR" id="MATNR2"/>
+                        <m:Text text="POSNR" id="ARKTX2"/>
+                        <m:Text text="POSNR" id="ZMENG2"/>
+                        <m:Text text="POSNR" id="MEINS2"/>
+                        <m:Text text="POSNR" id="NETWR2"/>
+				</f:expandedContent>
+    		</f:DynamicPageTitle>
+			</f:title>
+		</f:DynamicPage>
+</core:FragmentDefinition>

@@ -832,6 +832,29 @@ sap.ui.define([
                 this.getSplitAppObj().toDetail(this.createId("detailPedido"));
 
             },
+            handleLinkOferta: function(evt) {
+                var linkPedido = evt.getSource();
+                var numPedido = linkPedido.getText();
+                var that = this;
+                
+                //numPedido = '4500000252';
+
+                this._oModel.read("/PedidoSet('" + numPedido +"')", {
+                    urlParameters: {
+                        "$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
+                        "sap-lang":'S'
+                    },
+                    success: function(data, response) {
+                        that._jsonModel.setProperty("/PedidoSeleccionado",data);
+                        that.getView().setModel(that._jsonModel);                        
+                    },
+                    error: function(oError) {
+                    }
+                });
+
+                this.getSplitAppObj().toDetail(this.createId("detailOferta"));
+
+            },
             onChangeFechaDesde: function(evt) {
                 //Calculo un año hacia adelante desde la fecha desde
                 var fechaPicker = evt.getSource();

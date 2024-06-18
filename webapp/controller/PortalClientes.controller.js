@@ -3,14 +3,15 @@ sap.ui.define([
     'sap/ui/model/odata/v2/ODataModel',
     'sap/ui/model/json/JSONModel',
     '../model/formatter',
-    'sap/ui/export/library'
+    'sap/ui/export/library',
+    "sap/m/MessageToast"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
+    function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToast) {
         "use strict";
-        //index.html?sap-ui-xx-viewCache=false#/clientes (al ejecutarlo como noflp)
+        //	index.html?sap-ui-xx-viewCache=false#/clientes
         var EdmType = exportLibrary.EdmType;
 
         return Controller.extend("com.migracion.portalproveedores.controller.PortalClientes", {
@@ -51,20 +52,61 @@ sap.ui.define([
                 this.getSplitAppObj().toDetail(this.createId("detailHome"));
             },
             
-            onSelectReportes: function() {
-                this.getSplitAppObj().toDetail(this.createId("detailReportes"));
-            },
-
-            onSelectFacturas: function() {
-                this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
-            },
-
-            onSelectPagos: function() {
-                this.getSplitAppObj().toDetail(this.createId("detailPagos"));
+            onSelectOferta: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailOferta"));
             },
 
             onSelectPedidos: function() {
                 this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
+            },
+
+            onSelectOfertaDET: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
+            },
+
+            onSelectPedidosDET: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailPedidosDET"));
+            },
+
+            onPressed: function() {
+                MessageToast.show("Data read successfully");
+            },
+
+            onPress: function() {
+                var oModel = this.getView().getModel("purchaseOrder");
+                // Leer datos
+                oModel.read("/C_PurOrdItemEnh", {
+                    success: function(oData) {
+                        MessageToast.show("Data read successfully");
+                    },
+                    error: function(oError) {
+                        MessageToast.show("Error reading Data");
+                    }
+                });
+            },
+
+            handleLinkPedido: function(evt) {
+                var linkPedido = evt.getSource();
+                var numPedido = linkPedido.getText();
+                var that = this;
+                
+                //numPedido = '4500000252';
+
+                this._oModel.read("/PedidoSet('" + numPedido +"')", {
+                    urlParameters: {
+                        "$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
+                        "sap-lang":'S'
+                    },
+                    success: function(data, response) {
+                        that._jsonModel.setProperty("/PedidoSeleccionado",data);
+                        that.getView().setModel(that._jsonModel);                        
+                    },
+                    error: function(oError) {
+                    }
+                });
+
+                this.getSplitAppObj().toDetail(this.createId("detailPedido"));
+
             },
 
             getSplitAppObj: function () {
