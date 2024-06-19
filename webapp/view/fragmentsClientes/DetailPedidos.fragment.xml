@@ -5,25 +5,76 @@
     xmlns:r="sap.suite.ui.microchart"
 	xmlns:l="sap.ui.layout" 
 	xmlns:m="sap.m"
-    xmlns:ux="sap.uxap"
+	xmlns:form="sap.ui.layout.form"
 	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:ux="sap.uxap"
 	xmlns:f="sap.f">
-		<f:DynamicPage id="dy" headerExpanded="{/headerExpanded}">			
-			<f:title>
-			<f:DynamicPageTitle id="DynamicPageTitle">
-				<f:heading>
-					<m:Title text="Datos de cabecera" id="Title"/>    
-				</f:heading>
-				<f:expandedContent>
-					<m:Label id="Label" text="x:"/>
-					<m:FormattedText
-						htmlText="xxxx"
-						id="address" />
-				</f:expandedContent>
-    		</f:DynamicPageTitle>
-			</f:title>
-			<f:content>
-				<Table
+		<l:VerticalLayout>		
+			<form:SimpleForm id="SimpleFormPedidos"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Pedidos"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="3"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1">
+			<form:content>
+				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarPedidoClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem id="filterPedidoId" name="PedidoName" label="Pedido" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input
+									id="inputPedido"
+									name="Pedido"													
+									>												
+								</m:Input>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="groupItemPedido" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaPedidoPicker"											
+									change="onChangeFechaDesde"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"
+								/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="groupItemHastaPedido" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaHastaPedidoPicker"											
+									change="handleChange"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="filterEstadoPedido" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input
+									id="inputEstadoPedido"
+									name="Estado"													
+									>												
+								</m:Input>
+							</fb:control>
+						</fb:FilterGroupItem>
+													
+						</fb:filterGroupItems>
+					</fb:FilterBar>			
+				</form:content>
+			</form:SimpleForm>
+			<Table
 				id="tablePedidos"						
 				rows="{path: '/PedidoSet'}"	
 				selectionMode="None">
@@ -80,7 +131,6 @@
 					</Column>
 					</columns>						
 				</Table>
-			</f:content>
-		</f:DynamicPage>
+		</l:VerticalLayout>
 
 </core:FragmentDefinition>

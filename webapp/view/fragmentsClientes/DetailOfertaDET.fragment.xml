@@ -11,21 +11,42 @@
 	xmlns:f="sap.f">
     <f:DynamicPage id="dyDET2" headerExpanded="{/headerExpanded}">			
 			<f:title>
-			<f:DynamicPageTitle id="DynamicPageTitlePedidoDET2">
+			<f:DynamicPageTitle id="DynamicPageTitleOfertaDET">
 				<f:heading>
-					<m:Title text="Datos de cabecera" id="TitleDET2"/>    
+					<m:Title text="Datos de cabecera" id="TitleOfertaDET"/>    
 				</f:heading>
 				<f:expandedContent>
-					<m:Label id="LabelDET2" text="x:"/>
-					<m:FormattedText
-						htmlText="xxxx"
-						id="addressDET2" />
-                        <m:Text text="POSNR" id="POSNR2"/>
-                        <m:Text text="POSNR" id="MATNR2"/>
-                        <m:Text text="POSNR" id="ARKTX2"/>
-                        <m:Text text="POSNR" id="ZMENG2"/>
-                        <m:Text text="POSNR" id="MEINS2"/>
-                        <m:Text text="POSNR" id="NETWR2"/>
+					<l:VerticalLayout>
+						<l:HorizontalLayout>
+							<m:Label id="LabelPosnrOfertaDET" text="x:"/>
+							<m:Text text="POSNR" id="posnrOfertaDET" />
+						</l:HorizontalLayout>
+						
+						<l:HorizontalLayout>
+							<m:Label id="LabelMatnrOfertaDET" text="x:"/>
+							<m:Text text="MATNR" id="matnrOfertaDET" />
+						</l:HorizontalLayout>
+
+						<l:HorizontalLayout>
+							<m:Label id="LabelArktxOfertaDET" text="x:"/>
+							<m:Text text="ARKTX" id="arktxOfertaDET" />
+						</l:HorizontalLayout>
+
+						<l:HorizontalLayout>
+							<m:Label id="LabelZmengOfertaDET" text="x:"/>
+							<m:Text text="ZMENG" id="zmengOfertaDET" />
+						</l:HorizontalLayout>
+
+						<l:HorizontalLayout>
+							<m:Label id="LabelMeinsOfertaDET" text="x:"/>
+							<m:Text text="MEINS" id="meinsOfertaDET" />
+						</l:HorizontalLayout>
+
+						<l:HorizontalLayout>
+							<m:Label id="LabelNetwrOfertaDET" text="x:"/>
+							<m:Text text="NETWR" id="netwrOfertaDET" />
+						</l:HorizontalLayout>
+					</l:VerticalLayout>
 				</f:expandedContent>
     		</f:DynamicPageTitle>
 			</f:title>

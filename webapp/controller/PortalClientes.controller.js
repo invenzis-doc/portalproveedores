@@ -54,35 +54,57 @@ sap.ui.define([
             
             onSelectOferta: function() {
                 this.getSplitAppObj().toDetail(this.createId("detailOferta"));
+                var that = this;
+                //Inicializar los filtros de fecha
+                var fechaHoy = new Date();
+                var fechaHasta = this.formatFilterDate(fechaHoy)
+
+                var fechaDesde = fechaHoy;
+                fechaDesde.setMonth(fechaHoy.getMonth() - 4);
+                fechaDesde = this.formatFilterDate(fechaDesde);
+                
+                that._oModel.read("/PedidoSet", {
+                    urlParameters: {
+                        "$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
+                    },
+                    success: function(dataPedidos, responsePedidos) {
+                        that._jsonModel.setProperty("/PedidoSet",dataPedidos.results);                                              
+                    },
+                    error: function(oError) {
+                    }
+                });      
             },
 
             onSelectPedidos: function() {
                 this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
+                var that = this;
+                //Inicializar los filtros de fecha
+                var fechaHoy = new Date();
+                var fechaHasta = this.formatFilterDate(fechaHoy)
+
+                var fechaDesde = fechaHoy;
+                fechaDesde.setMonth(fechaHoy.getMonth() - 4);
+                fechaDesde = this.formatFilterDate(fechaDesde);
+                
+                that._oModel.read("/PedidoSet", {
+                    urlParameters: {
+                        "$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
+                    },
+                    success: function(dataPedidos, responsePedidos) {
+                        that._jsonModel.setProperty("/PedidoSet",dataPedidos.results);                                              
+                    },
+                    error: function(oError) {
+                    }
+                });      
             },
 
             onSelectOfertaDET: function() {
                 this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
+                
             },
 
             onSelectPedidosDET: function() {
                 this.getSplitAppObj().toDetail(this.createId("detailPedidosDET"));
-            },
-
-            onPressed: function() {
-                MessageToast.show("Data read successfully");
-            },
-
-            onPress: function() {
-                var oModel = this.getView().getModel("purchaseOrder");
-                // Leer datos
-                oModel.read("/C_PurOrdItemEnh", {
-                    success: function(oData) {
-                        MessageToast.show("Data read successfully");
-                    },
-                    error: function(oError) {
-                        MessageToast.show("Error reading Data");
-                    }
-                });
             },
 
             handleLinkPedido: function(evt) {
@@ -105,7 +127,31 @@ sap.ui.define([
                     }
                 });
 
-                this.getSplitAppObj().toDetail(this.createId("detailPedido"));
+                this.getSplitAppObj().toDetail(this.createId("detailPedidosDET"));
+
+            },
+
+            handleLinkOferta: function(evt) {
+                var linkPedido = evt.getSource();
+                var numPedido = linkPedido.getText();
+                var that = this;
+                
+                //numPedido = '4500000252';
+
+                this._oModel.read("/PedidoSet('" + numPedido +"')", {
+                    urlParameters: {
+                        "$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
+                        "sap-lang":'S'
+                    },
+                    success: function(data, response) {
+                        that._jsonModel.setProperty("/PedidoSeleccionado",data);
+                        that.getView().setModel(that._jsonModel);                        
+                    },
+                    error: function(oError) {
+                    }
+                });
+
+                this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
 
             },
 
@@ -115,6 +161,14 @@ sap.ui.define([
                     Log.info("SplitApp object can't be found");
                 }
                 return result;
+            },
+
+            formatFilterDate : function (date) {
+                var dia = date.getDate().toString().padStart(2, '0');
+                var mes = date.getMonth() + 1;
+                mes = mes.toString().padStart(2, '0');
+                var valorFechaHasta = date.getFullYear() + mes + dia;
+                return (valorFechaHasta)
             }
 
         });

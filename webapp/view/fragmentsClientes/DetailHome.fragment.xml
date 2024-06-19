@@ -20,8 +20,6 @@
 				/>
 			</List>
 		</Panel >
-		
-		<m:Button id="button" text="Read Data" press="onPress" />
 	
 	</l:VerticalLayout>	
 </core:FragmentDefinition>

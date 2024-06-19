@@ -49,11 +49,7 @@
 				<tnt:NavigationListItem id="item2" text="Pedidos de venta" icon="sap-icon://sales-order" select="onSelectPedidos">						
 				</tnt:NavigationListItem>	
 				<tnt:NavigationListItem id="item3" text="Oferta" icon="sap-icon://activity-2" select="onSelectOferta">						
-				</tnt:NavigationListItem>
-				<tnt:NavigationListItem id="item4" text="Pedidos de venta det" icon="sap-icon://sales-order" select="onSelectPedidosDET">						
-				</tnt:NavigationListItem>	
-				<tnt:NavigationListItem id="item5" text="Oferta det" icon="sap-icon://activity-2" select="onSelectOfertaDET">						
-				</tnt:NavigationListItem>				
+				</tnt:NavigationListItem>			
 			</tnt:NavigationList>		
 	</tnt:SideNavigation>
 			</Page>
